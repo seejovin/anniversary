@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5c8e5">
+  <meta name="description" content="有一个小小的问题想问你：可以和我一起约会吗？选个时间，一起去吃喜欢的东西。">
+  <title>Dating with me · 可以和我约会吗？</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='17' fill='%23f044b5' stroke='%23252227' stroke-width='5'/%3E%3Cpath d='M32 47 16 32C4 18 24 11 32 24 40 11 60 18 48 32Z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="page-frame" aria-hidden="true"></div>
+  <div class="flowers" aria-hidden="true"><span>🌸</span><span>🌸</span><span>✿</span><span>✿</span></div>
+  <main>
+    <article class="card" id="card" aria-label="约会邀请">
+      <section class="screen" id="invite" aria-labelledby="invite-title">
+        <div class="tortoise-sticker"><img src="tortoise-couple-cartoon.png" width="148" height="148" alt="可愛的卡通陸龜情侶：大公龜和小母龜依偎在一起"></div>
+        <h1 id="invite-title" tabindex="-1"><span class="heading-flower" aria-hidden="true">🌸</span> 可以跟小烏龜約會嗎？！ <span class="heading-flower" aria-hidden="true">🌸</span></h1>
+        <p class="subtitle">系统检测到：对方已经紧张到开始傻笑了。</p>
+        <div class="invite-actions">
+          <button class="button primary" id="yes">愿意 <span aria-hidden="true">♥</span></button>
+          <button class="button secondary" id="no" type="button">不嘛 <span aria-hidden="true">🙈</span></button>
+        </div>
+        <p class="tiny-note" id="no-note" aria-live="polite"></p>
+      </section>
+
+      <section class="screen" id="surprise" aria-labelledby="surprise-title" hidden>
+        <div class="tortoise-sticker"><img src="tortoise-couple-cartoon.png" width="148" height="148" alt="可愛的卡通陸龜情侶：大公龜和小母龜依偎在一起"></div>
+        <h1 id="surprise-title" tabindex="-1">我就知道妳會答應 hehe</h1>
+        <button class="button primary" id="really-yes">好啦好啦～ <span aria-hidden="true">♥</span></button>
+      </section>
+
+      <section class="screen" id="schedule" aria-labelledby="schedule-title" hidden>
+        <div class="emoji-sticker" aria-hidden="true">📅</div>
+        <h1 id="schedule-title" tabindex="-1">所以…你什么时候<br>有空？ <span aria-hidden="true">☺️</span></h1>
+        <form id="schedule-form" class="schedule-form">
+          <label for="date">选一天 <span aria-hidden="true">🗓️</span></label>
+          <input type="date" id="date" name="date" required>
+          <label for="time">几点见？ <span aria-hidden="true">⏰</span></label>
+          <select id="time" name="time" required><option value="" disabled selected>选择时间</option></select>
+          <p class="error" id="schedule-error" role="alert"></p>
+          <button class="button primary full" type="submit">接下来吃什么？ <span aria-hidden="true">♥</span></button>
+        </form>
+        <button class="back-button" data-back="surprise">← 上一步</button>
+      </section>
+
+      <section class="screen" id="food" aria-labelledby="food-title" hidden>
+        <h1 id="food-title" tabindex="-1">我们吃点什么？ <span aria-hidden="true">🍽️</span></h1>
+        <p class="subtitle">挑一个今天的约会氛围。</p>
+        <form id="food-form">
+          <fieldset class="food-grid"><legend class="sr-only">选一种想吃的美食</legend></fieldset>
+          <div class="other-food" id="other-food" hidden>
+            <label for="custom-food">你想吃什么？</label>
+            <input type="text" id="custom-food" name="custom-food" placeholder="比如：一起去吃早午餐" maxlength="40">
+          </div>
+          <p class="error" id="food-error" role="alert"></p>
+          <button class="button primary full" id="confirm-food" type="submit" disabled>选好啦，就吃这个！ <span aria-hidden="true">♥</span></button>
+        </form>
+        <button class="back-button" data-back="schedule">← 改一下时间</button>
+      </section>
+
+      <section class="screen" id="confirmed" aria-labelledby="confirmed-title" hidden>
+        <div class="tortoise-sticker"><img src="tortoise-couple-cartoon.png" width="148" height="148" alt="可愛的卡通陸龜情侶：大公龜和小母龜依偎在一起"></div>
+        <h1 id="confirmed-title" tabindex="-1">真开心你没有拒绝～<br>我会准时来接你！</h1>
+        <p class="subtitle" id="confirmation-copy"></p>
+        <dl class="date-ticket">
+          <div><dt>DATE / 日期</dt><dd id="summary-date"></dd></div>
+          <div><dt>TIME / 时间</dt><dd id="summary-time"></dd></div>
+          <div class="ticket-menu"><dt>MENU / 吃什么</dt><dd id="summary-food"></dd></div>
+        </dl>
+        <div class="heart-row" aria-hidden="true">♥ &nbsp; ♥ &nbsp; ♥ &nbsp; ♥ &nbsp; ♥</div>
+        <button class="back-button" data-back="schedule">改一下约会安排</button>
+      </section>
+
+    </article>
+  </main>
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+</body>
+</html>
